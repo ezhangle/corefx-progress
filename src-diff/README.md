@@ -67,7 +67,7 @@ Assembly Name | Status
 [System.Reflection.Extensions](System.Reflection.Extensions.md) | Coming
 [System.Reflection.Primitives](System.Reflection.Primitives.md) | Coming
 [System.Reflection.TypeExtensions](System.Reflection.TypeExtensions.md) | Coming
-[System.Resources.ReaderWriter](System.Resources.ReaderWriter.md) | Coming
+[System.Resources.ReaderWriter](System.Resources.ReaderWriter.md) | Done
 [System.Resources.ResourceManager](System.Resources.ResourceManager.md) | Coming
 [System.Runtime.CompilerServices.VisualC](System.Runtime.CompilerServices.VisualC.md) | Coming
 [System.Runtime](System.Runtime.md) | Coming
