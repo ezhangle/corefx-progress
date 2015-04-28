@@ -27,43 +27,43 @@
     public static void WriteLineIf(bool condition, string messagevalue);
     public static void WriteLineIf(bool condition, string messagevalue, string category);
   }
-  public static class Debugger {
-    public static bool IsAttached { get; }
-    public static void Break();
-    public static bool Launch();
+- public static class Debugger {
+-   public static bool IsAttached { get; }
+-   public static void Break();
+-   public static bool Launch();
   }
-  public sealed class DebuggerBrowsableAttribute : Attribute {
-    public DebuggerBrowsableAttribute(DebuggerBrowsableState state);
-    public DebuggerBrowsableState State { get; }
+- public sealed class DebuggerBrowsableAttribute : Attribute {
+-   public DebuggerBrowsableAttribute(DebuggerBrowsableState state);
+-   public DebuggerBrowsableState State { get; }
   }
-  public enum DebuggerBrowsableState {
-    Collapsed = 2,
-    Never = 0,
-    RootHidden = 3,
+- public enum DebuggerBrowsableState {
+-   Collapsed = 2,
+-   Never = 0,
+-   RootHidden = 3,
   }
-  public sealed class DebuggerDisplayAttribute : Attribute {
-    public DebuggerDisplayAttribute(string value);
-    public string Name { get; set; }
-    public Type Target { get; set; }
-    public string TargetTypeName { get; set; }
-    public string Type { get; set; }
-    public string Value { get; }
+- public sealed class DebuggerDisplayAttribute : Attribute {
+-   public DebuggerDisplayAttribute(string value);
+-   public string Name { get; set; }
+-   public Type Target { get; set; }
+-   public string TargetTypeName { get; set; }
+-   public string Type { get; set; }
+-   public string Value { get; }
   }
-  public sealed class DebuggerHiddenAttribute : Attribute {
-    public DebuggerHiddenAttribute();
+- public sealed class DebuggerHiddenAttribute : Attribute {
+-   public DebuggerHiddenAttribute();
   }
-  public sealed class DebuggerNonUserCodeAttribute : Attribute {
-    public DebuggerNonUserCodeAttribute();
+- public sealed class DebuggerNonUserCodeAttribute : Attribute {
+-   public DebuggerNonUserCodeAttribute();
   }
-  public sealed class DebuggerStepThroughAttribute : Attribute {
-    public DebuggerStepThroughAttribute();
+- public sealed class DebuggerStepThroughAttribute : Attribute {
+-   public DebuggerStepThroughAttribute();
   }
-  public sealed class DebuggerTypeProxyAttribute : Attribute {
-    public DebuggerTypeProxyAttribute(string typeName);
-    public DebuggerTypeProxyAttribute(Type type);
-    public string ProxyTypeName { get; }
-    public Type Target { get; set; }
-    public string TargetTypeName { get; set; }
+- public sealed class DebuggerTypeProxyAttribute : Attribute {
+-   public DebuggerTypeProxyAttribute(string typeName);
+-   public DebuggerTypeProxyAttribute(Type type);
+-   public string ProxyTypeName { get; }
+-   public Type Target { get; set; }
+-   public string TargetTypeName { get; set; }
   }
  }
 ```
