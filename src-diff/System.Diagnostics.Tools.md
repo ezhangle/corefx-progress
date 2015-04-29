@@ -1,11 +1,11 @@
 ﻿```diff
 ---lib-full\System.Diagnostics.Tools.dll
 +++lib-oss\System.Diagnostics.Tools.dll
--namespace System.CodeDom.Compiler {
-- public sealed class GeneratedCodeAttribute : Attribute {
--   public GeneratedCodeAttribute(string tool, string version);
--   public string Tool { get; }
--   public string Version { get; }
+ namespace System.CodeDom.Compiler {
+  public sealed class GeneratedCodeAttribute : Attribute {
+    public GeneratedCodeAttribute(string tool, string version);
+    public string Tool { get; }
+    public string Version { get; }
   }
  }
 -namespace System.Diagnostics.CodeAnalysis {

@@ -24,6 +24,7 @@
     public override long Position { get; set; }
     protected override void Dispose(bool disposing);
     public override void Flush();
++   public override Task FlushAsync(CancellationToken cancellationToken);
     public override int Read(byte[] array, int offset, int count);
 +   public override Task<int> ReadAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
     public override long Seek(long offset, SeekOrigin origin);
@@ -44,6 +45,7 @@
     public override long Position { get; set; }
     protected override void Dispose(bool disposing);
     public override void Flush();
++   public override Task FlushAsync(CancellationToken cancellationToken);
     public override int Read(byte[] array, int offset, int count);
 +   public override Task<int> ReadAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
     public override long Seek(long offset, SeekOrigin origin);

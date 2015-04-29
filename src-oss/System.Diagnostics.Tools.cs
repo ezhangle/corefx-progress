@@ -1,0 +1,7 @@
+﻿namespace System.CodeDom.Compiler {
+  public sealed class GeneratedCodeAttribute : Attribute {
+    public GeneratedCodeAttribute(string tool, string version);
+    public string Tool { get; }
+    public string Version { get; }
+  }
+}
