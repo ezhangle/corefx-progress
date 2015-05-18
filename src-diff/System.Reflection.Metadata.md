@@ -76,8 +76,10 @@
 +   public bool Equals(AssemblyDefinitionHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(AssemblyDefinitionHandle left, AssemblyDefinitionHandle right);
++   public static explicit operator AssemblyDefinitionHandle (EntityHandle handle);
 +   public static explicit operator AssemblyDefinitionHandle (Handle handle);
 +   public static implicit operator Handle (AssemblyDefinitionHandle handle);
++   public static implicit operator EntityHandle (AssemblyDefinitionHandle handle);
 +   public static bool operator !=(AssemblyDefinitionHandle left, AssemblyDefinitionHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -94,8 +96,10 @@
 +   public bool Equals(AssemblyFileHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(AssemblyFileHandle left, AssemblyFileHandle right);
++   public static explicit operator AssemblyFileHandle (EntityHandle handle);
 +   public static explicit operator AssemblyFileHandle (Handle handle);
 +   public static implicit operator Handle (AssemblyFileHandle handle);
++   public static implicit operator EntityHandle (AssemblyFileHandle handle);
 +   public static bool operator !=(AssemblyFileHandle left, AssemblyFileHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -130,8 +134,10 @@
 +   public bool Equals(AssemblyReferenceHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(AssemblyReferenceHandle left, AssemblyReferenceHandle right);
++   public static explicit operator AssemblyReferenceHandle (EntityHandle handle);
 +   public static explicit operator AssemblyReferenceHandle (Handle handle);
 +   public static implicit operator Handle (AssemblyReferenceHandle handle);
++   public static implicit operator EntityHandle (AssemblyReferenceHandle handle);
 +   public static bool operator !=(AssemblyReferenceHandle left, AssemblyReferenceHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -182,7 +188,7 @@
 +   public SignatureHeader ReadSignatureHeader();
 +   public SignatureTypeCode ReadSignatureTypeCode();
 +   public float ReadSingle();
-+   public Handle ReadTypeHandle();
++   public EntityHandle ReadTypeHandle();
 +   public ushort ReadUInt16();
 +   public uint ReadUInt32();
 +   public ulong ReadUInt64();
@@ -194,7 +200,7 @@
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct Constant {
-+   public Handle Parent { get; }
++   public EntityHandle Parent { get; }
 +   public ConstantTypeCode TypeCode { get; }
 +   public BlobHandle Value { get; }
   }
@@ -205,8 +211,10 @@
 +   public bool Equals(ConstantHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(ConstantHandle left, ConstantHandle right);
++   public static explicit operator ConstantHandle (EntityHandle handle);
 +   public static explicit operator ConstantHandle (Handle handle);
 +   public static implicit operator Handle (ConstantHandle handle);
++   public static implicit operator EntityHandle (ConstantHandle handle);
 +   public static bool operator !=(ConstantHandle left, ConstantHandle right);
   }
 + public enum ConstantTypeCode : byte {
@@ -228,8 +236,8 @@
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct CustomAttribute {
-+   public Handle Constructor { get; }
-+   public Handle Parent { get; }
++   public EntityHandle Constructor { get; }
++   public EntityHandle Parent { get; }
 +   public BlobHandle Value { get; }
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -239,8 +247,10 @@
 +   public bool Equals(CustomAttributeHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(CustomAttributeHandle left, CustomAttributeHandle right);
++   public static explicit operator CustomAttributeHandle (EntityHandle handle);
 +   public static explicit operator CustomAttributeHandle (Handle handle);
 +   public static implicit operator Handle (CustomAttributeHandle handle);
++   public static implicit operator EntityHandle (CustomAttributeHandle handle);
 +   public static bool operator !=(CustomAttributeHandle left, CustomAttributeHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -265,7 +275,7 @@
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct DeclarativeSecurityAttribute {
 +   public DeclarativeSecurityAction Action { get; }
-+   public Handle Parent { get; }
++   public EntityHandle Parent { get; }
 +   public BlobHandle PermissionSet { get; }
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -275,8 +285,10 @@
 +   public bool Equals(DeclarativeSecurityAttributeHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(DeclarativeSecurityAttributeHandle left, DeclarativeSecurityAttributeHandle right);
++   public static explicit operator DeclarativeSecurityAttributeHandle (EntityHandle handle);
 +   public static explicit operator DeclarativeSecurityAttributeHandle (Handle handle);
 +   public static implicit operator Handle (DeclarativeSecurityAttributeHandle handle);
++   public static implicit operator EntityHandle (DeclarativeSecurityAttributeHandle handle);
 +   public static bool operator !=(DeclarativeSecurityAttributeHandle left, DeclarativeSecurityAttributeHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -295,6 +307,20 @@
     }
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+  public struct EntityHandle : IEquatable<EntityHandle> {
++   public static readonly AssemblyDefinitionHandle AssemblyDefinition;
++   public static readonly ModuleDefinitionHandle ModuleDefinition;
++   public bool IsNil { get; }
++   public HandleKind Kind { get; }
++   public override bool Equals(object obj);
++   public bool Equals(EntityHandle other);
++   public override int GetHashCode();
++   public static bool operator ==(EntityHandle left, EntityHandle right);
++   public static explicit operator EntityHandle (Handle handle);
++   public static implicit operator Handle (EntityHandle handle);
++   public static bool operator !=(EntityHandle left, EntityHandle right);
+  }
++ [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct EventAccessors {
 +   public MethodDefinitionHandle Adder { get; }
 +   public MethodDefinitionHandle Raiser { get; }
@@ -304,7 +330,7 @@
   public struct EventDefinition {
 +   public EventAttributes Attributes { get; }
 +   public StringHandle Name { get; }
-+   public Handle Type { get; }
++   public EntityHandle Type { get; }
 +   public EventAccessors GetAccessors();
 +   public CustomAttributeHandleCollection GetCustomAttributes();
   }
@@ -315,8 +341,10 @@
 +   public bool Equals(EventDefinitionHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(EventDefinitionHandle left, EventDefinitionHandle right);
++   public static explicit operator EventDefinitionHandle (EntityHandle handle);
 +   public static explicit operator EventDefinitionHandle (Handle handle);
 +   public static implicit operator Handle (EventDefinitionHandle handle);
++   public static implicit operator EntityHandle (EventDefinitionHandle handle);
 +   public static bool operator !=(EventDefinitionHandle left, EventDefinitionHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -336,7 +364,7 @@
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct ExceptionRegion {
-+   public Handle CatchType { get; }
++   public EntityHandle CatchType { get; }
 +   public int FilterOffset { get; }
 +   public int HandlerLength { get; }
 +   public int HandlerOffset { get; }
@@ -353,10 +381,11 @@
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct ExportedType {
 +   public TypeAttributes Attributes { get; }
-+   public Handle Implementation { get; }
++   public EntityHandle Implementation { get; }
 +   public bool IsForwarder { get; }
 +   public StringHandle Name { get; }
-+   public NamespaceDefinitionHandle Namespace { get; }
++   public StringHandle Namespace { get; }
++   public NamespaceDefinitionHandle NamespaceDefinition { get; }
 +   public CustomAttributeHandleCollection GetCustomAttributes();
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -366,8 +395,10 @@
 +   public bool Equals(ExportedTypeHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(ExportedTypeHandle left, ExportedTypeHandle right);
++   public static explicit operator ExportedTypeHandle (EntityHandle handle);
 +   public static explicit operator ExportedTypeHandle (Handle handle);
 +   public static implicit operator Handle (ExportedTypeHandle handle);
++   public static implicit operator EntityHandle (ExportedTypeHandle handle);
 +   public static bool operator !=(ExportedTypeHandle left, ExportedTypeHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -404,8 +435,10 @@
 +   public bool Equals(FieldDefinitionHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(FieldDefinitionHandle left, FieldDefinitionHandle right);
++   public static explicit operator FieldDefinitionHandle (EntityHandle handle);
 +   public static explicit operator FieldDefinitionHandle (Handle handle);
 +   public static implicit operator Handle (FieldDefinitionHandle handle);
++   public static implicit operator EntityHandle (FieldDefinitionHandle handle);
 +   public static bool operator !=(FieldDefinitionHandle left, FieldDefinitionHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -428,14 +461,14 @@
 +   public GenericParameterAttributes Attributes { get; }
 +   public int Index { get; }
 +   public StringHandle Name { get; }
-+   public Handle Parent { get; }
++   public EntityHandle Parent { get; }
 +   public GenericParameterConstraintHandleCollection GetConstraints();
 +   public CustomAttributeHandleCollection GetCustomAttributes();
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct GenericParameterConstraint {
 +   public GenericParameterHandle Parameter { get; }
-+   public Handle Type { get; }
++   public EntityHandle Type { get; }
 +   public CustomAttributeHandleCollection GetCustomAttributes();
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -445,8 +478,10 @@
 +   public bool Equals(GenericParameterConstraintHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(GenericParameterConstraintHandle left, GenericParameterConstraintHandle right);
++   public static explicit operator GenericParameterConstraintHandle (EntityHandle handle);
 +   public static explicit operator GenericParameterConstraintHandle (Handle handle);
 +   public static implicit operator Handle (GenericParameterConstraintHandle handle);
++   public static implicit operator EntityHandle (GenericParameterConstraintHandle handle);
 +   public static bool operator !=(GenericParameterConstraintHandle left, GenericParameterConstraintHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -472,8 +507,10 @@
 +   public bool Equals(GenericParameterHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(GenericParameterHandle left, GenericParameterHandle right);
++   public static explicit operator GenericParameterHandle (EntityHandle handle);
 +   public static explicit operator GenericParameterHandle (Handle handle);
 +   public static implicit operator Handle (GenericParameterHandle handle);
++   public static implicit operator EntityHandle (GenericParameterHandle handle);
 +   public static bool operator !=(GenericParameterHandle left, GenericParameterHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -515,10 +552,13 @@
 +   public static bool operator ==(Handle left, Handle right);
 +   public static bool operator !=(Handle left, Handle right);
   }
-+ public sealed class HandleComparer : IComparer<Handle>, IEqualityComparer<Handle> {
++ public sealed class HandleComparer : IComparer<EntityHandle>, IComparer<Handle>, IEqualityComparer<EntityHandle>, IEqualityComparer<Handle> {
 +   public static HandleComparer Default { get; }
++   public int Compare(EntityHandle x, EntityHandle y);
 +   public int Compare(Handle x, Handle y);
++   public bool Equals(EntityHandle x, EntityHandle y);
 +   public bool Equals(Handle x, Handle y);
++   public int GetHashCode(EntityHandle obj);
 +   public int GetHashCode(Handle obj);
   }
 + public enum HandleKind : byte {
@@ -555,7 +595,7 @@
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct InterfaceImplementation {
-+   public Handle Interface { get; }
++   public EntityHandle Interface { get; }
 +   public CustomAttributeHandleCollection GetCustomAttributes();
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -565,8 +605,10 @@
 +   public bool Equals(InterfaceImplementationHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(InterfaceImplementationHandle left, InterfaceImplementationHandle right);
++   public static explicit operator InterfaceImplementationHandle (EntityHandle handle);
 +   public static explicit operator InterfaceImplementationHandle (Handle handle);
 +   public static implicit operator Handle (InterfaceImplementationHandle handle);
++   public static implicit operator EntityHandle (InterfaceImplementationHandle handle);
 +   public static bool operator !=(InterfaceImplementationHandle left, InterfaceImplementationHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -587,7 +629,7 @@
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct ManifestResource {
 +   public ManifestResourceAttributes Attributes { get; }
-+   public Handle Implementation { get; }
++   public EntityHandle Implementation { get; }
 +   public StringHandle Name { get; }
 +   public long Offset { get; }
 +   public CustomAttributeHandleCollection GetCustomAttributes();
@@ -599,8 +641,10 @@
 +   public bool Equals(ManifestResourceHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(ManifestResourceHandle left, ManifestResourceHandle right);
++   public static explicit operator ManifestResourceHandle (EntityHandle handle);
 +   public static explicit operator ManifestResourceHandle (Handle handle);
 +   public static implicit operator Handle (ManifestResourceHandle handle);
++   public static implicit operator EntityHandle (ManifestResourceHandle handle);
 +   public static bool operator !=(ManifestResourceHandle left, ManifestResourceHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -621,7 +665,7 @@
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct MemberReference {
 +   public StringHandle Name { get; }
-+   public Handle Parent { get; }
++   public EntityHandle Parent { get; }
 +   public BlobHandle Signature { get; }
 +   public CustomAttributeHandleCollection GetCustomAttributes();
 +   public MemberReferenceKind GetKind();
@@ -633,8 +677,10 @@
 +   public bool Equals(MemberReferenceHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(MemberReferenceHandle left, MemberReferenceHandle right);
++   public static explicit operator MemberReferenceHandle (EntityHandle handle);
 +   public static explicit operator MemberReferenceHandle (Handle handle);
 +   public static implicit operator Handle (MemberReferenceHandle handle);
++   public static implicit operator EntityHandle (MemberReferenceHandle handle);
 +   public static bool operator !=(MemberReferenceHandle left, MemberReferenceHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -691,7 +737,7 @@
 +   public BlobReader GetBlobReader(BlobHandle handle);
 +   public Constant GetConstant(ConstantHandle handle);
 +   public CustomAttribute GetCustomAttribute(CustomAttributeHandle handle);
-+   public CustomAttributeHandleCollection GetCustomAttributes(Handle handle);
++   public CustomAttributeHandleCollection GetCustomAttributes(EntityHandle handle);
 +   public DeclarativeSecurityAttribute GetDeclarativeSecurityAttribute(DeclarativeSecurityAttributeHandle handle);
 +   public EventDefinition GetEventDefinition(EventDefinitionHandle handle);
 +   public ExportedType GetExportedType(ExportedTypeHandle handle);
@@ -768,8 +814,10 @@
 +   public bool Equals(MethodDefinitionHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(MethodDefinitionHandle left, MethodDefinitionHandle right);
++   public static explicit operator MethodDefinitionHandle (EntityHandle handle);
 +   public static explicit operator MethodDefinitionHandle (Handle handle);
 +   public static implicit operator Handle (MethodDefinitionHandle handle);
++   public static implicit operator EntityHandle (MethodDefinitionHandle handle);
 +   public static bool operator !=(MethodDefinitionHandle left, MethodDefinitionHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -789,8 +837,8 @@
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct MethodImplementation {
-+   public Handle MethodBody { get; }
-+   public Handle MethodDeclaration { get; }
++   public EntityHandle MethodBody { get; }
++   public EntityHandle MethodDeclaration { get; }
 +   public TypeDefinitionHandle Type { get; }
 +   public CustomAttributeHandleCollection GetCustomAttributes();
   }
@@ -801,8 +849,10 @@
 +   public bool Equals(MethodImplementationHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(MethodImplementationHandle left, MethodImplementationHandle right);
++   public static explicit operator MethodImplementationHandle (EntityHandle handle);
 +   public static explicit operator MethodImplementationHandle (Handle handle);
 +   public static implicit operator Handle (MethodImplementationHandle handle);
++   public static implicit operator EntityHandle (MethodImplementationHandle handle);
 +   public static bool operator !=(MethodImplementationHandle left, MethodImplementationHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -828,7 +878,7 @@
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct MethodSpecification {
-+   public Handle Method { get; }
++   public EntityHandle Method { get; }
 +   public BlobHandle Signature { get; }
 +   public CustomAttributeHandleCollection GetCustomAttributes();
   }
@@ -839,8 +889,10 @@
 +   public bool Equals(MethodSpecificationHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(MethodSpecificationHandle left, MethodSpecificationHandle right);
++   public static explicit operator MethodSpecificationHandle (EntityHandle handle);
 +   public static explicit operator MethodSpecificationHandle (Handle handle);
 +   public static implicit operator Handle (MethodSpecificationHandle handle);
++   public static implicit operator EntityHandle (MethodSpecificationHandle handle);
 +   public static bool operator !=(MethodSpecificationHandle left, MethodSpecificationHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -858,8 +910,10 @@
 +   public bool Equals(ModuleDefinitionHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(ModuleDefinitionHandle left, ModuleDefinitionHandle right);
++   public static explicit operator ModuleDefinitionHandle (EntityHandle handle);
 +   public static explicit operator ModuleDefinitionHandle (Handle handle);
 +   public static implicit operator Handle (ModuleDefinitionHandle handle);
++   public static implicit operator EntityHandle (ModuleDefinitionHandle handle);
 +   public static bool operator !=(ModuleDefinitionHandle left, ModuleDefinitionHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -874,8 +928,10 @@
 +   public bool Equals(ModuleReferenceHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(ModuleReferenceHandle left, ModuleReferenceHandle right);
++   public static explicit operator ModuleReferenceHandle (EntityHandle handle);
 +   public static explicit operator ModuleReferenceHandle (Handle handle);
 +   public static implicit operator Handle (ModuleReferenceHandle handle);
++   public static implicit operator EntityHandle (ModuleReferenceHandle handle);
 +   public static bool operator !=(ModuleReferenceHandle left, ModuleReferenceHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -889,7 +945,6 @@
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct NamespaceDefinitionHandle : IEquatable<NamespaceDefinitionHandle> {
 +   public bool IsNil { get; }
-+   public int CompareTo(NamespaceDefinitionHandle other);
 +   public override bool Equals(object obj);
 +   public bool Equals(NamespaceDefinitionHandle other);
 +   public override int GetHashCode();
@@ -914,8 +969,10 @@
 +   public bool Equals(ParameterHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(ParameterHandle left, ParameterHandle right);
++   public static explicit operator ParameterHandle (EntityHandle handle);
 +   public static explicit operator ParameterHandle (Handle handle);
 +   public static implicit operator Handle (ParameterHandle handle);
++   public static implicit operator EntityHandle (ParameterHandle handle);
 +   public static bool operator !=(ParameterHandle left, ParameterHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -960,8 +1017,10 @@
 +   public bool Equals(PropertyDefinitionHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(PropertyDefinitionHandle left, PropertyDefinitionHandle right);
++   public static explicit operator PropertyDefinitionHandle (EntityHandle handle);
 +   public static explicit operator PropertyDefinitionHandle (Handle handle);
 +   public static implicit operator Handle (PropertyDefinitionHandle handle);
++   public static implicit operator EntityHandle (PropertyDefinitionHandle handle);
 +   public static bool operator !=(PropertyDefinitionHandle left, PropertyDefinitionHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -1084,8 +1143,10 @@
 +   public bool Equals(StandaloneSignatureHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(StandaloneSignatureHandle left, StandaloneSignatureHandle right);
++   public static explicit operator StandaloneSignatureHandle (EntityHandle handle);
 +   public static explicit operator StandaloneSignatureHandle (Handle handle);
 +   public static implicit operator Handle (StandaloneSignatureHandle handle);
++   public static implicit operator EntityHandle (StandaloneSignatureHandle handle);
 +   public static bool operator !=(StandaloneSignatureHandle left, StandaloneSignatureHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -1102,9 +1163,10 @@
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct TypeDefinition {
 +   public TypeAttributes Attributes { get; }
-+   public Handle BaseType { get; }
++   public EntityHandle BaseType { get; }
 +   public StringHandle Name { get; }
-+   public NamespaceDefinitionHandle Namespace { get; }
++   public StringHandle Namespace { get; }
++   public NamespaceDefinitionHandle NamespaceDefinition { get; }
 +   public CustomAttributeHandleCollection GetCustomAttributes();
 +   public DeclarativeSecurityAttributeHandleCollection GetDeclarativeSecurityAttributes();
 +   public TypeDefinitionHandle GetDeclaringType();
@@ -1125,8 +1187,10 @@
 +   public bool Equals(TypeDefinitionHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(TypeDefinitionHandle left, TypeDefinitionHandle right);
++   public static explicit operator TypeDefinitionHandle (EntityHandle handle);
 +   public static explicit operator TypeDefinitionHandle (Handle handle);
 +   public static implicit operator Handle (TypeDefinitionHandle handle);
++   public static implicit operator EntityHandle (TypeDefinitionHandle handle);
 +   public static bool operator !=(TypeDefinitionHandle left, TypeDefinitionHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -1155,7 +1219,7 @@
   public struct TypeReference {
 +   public StringHandle Name { get; }
 +   public StringHandle Namespace { get; }
-+   public Handle ResolutionScope { get; }
++   public EntityHandle ResolutionScope { get; }
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct TypeReferenceHandle : IEquatable<TypeReferenceHandle> {
@@ -1164,8 +1228,10 @@
 +   public bool Equals(TypeReferenceHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(TypeReferenceHandle left, TypeReferenceHandle right);
++   public static explicit operator TypeReferenceHandle (EntityHandle handle);
 +   public static explicit operator TypeReferenceHandle (Handle handle);
 +   public static implicit operator Handle (TypeReferenceHandle handle);
++   public static implicit operator EntityHandle (TypeReferenceHandle handle);
 +   public static bool operator !=(TypeReferenceHandle left, TypeReferenceHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -1195,8 +1261,10 @@
 +   public bool Equals(TypeSpecificationHandle other);
 +   public override int GetHashCode();
 +   public static bool operator ==(TypeSpecificationHandle left, TypeSpecificationHandle right);
++   public static explicit operator TypeSpecificationHandle (EntityHandle handle);
 +   public static explicit operator TypeSpecificationHandle (Handle handle);
 +   public static implicit operator Handle (TypeSpecificationHandle handle);
++   public static implicit operator EntityHandle (TypeSpecificationHandle handle);
 +   public static bool operator !=(TypeSpecificationHandle left, TypeSpecificationHandle right);
   }
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -1214,9 +1282,9 @@
 +namespace System.Reflection.Metadata.Ecma335 {
 + [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
   public struct EditAndContinueLogEntry : IEquatable<EditAndContinueLogEntry> {
-+   public readonly EditAndContinueOperation Operation;
-+   public readonly Handle Handle;
-+   public EditAndContinueLogEntry(Handle handle, EditAndContinueOperation operation);
++   public EditAndContinueLogEntry(EntityHandle handle, EditAndContinueOperation operation);
++   public EntityHandle Handle { get; }
++   public EditAndContinueOperation Operation { get; }
 +   public override bool Equals(object obj);
 +   public bool Equals(EditAndContinueLogEntry other);
 +   public override int GetHashCode();
@@ -1245,7 +1313,7 @@
   }
 + public static class MetadataReaderExtensions {
 +   public static IEnumerable<EditAndContinueLogEntry> GetEditAndContinueLogEntries(this MetadataReader reader);
-+   public static IEnumerable<Handle> GetEditAndContinueMapEntries(this MetadataReader reader);
++   public static IEnumerable<EntityHandle> GetEditAndContinueMapEntries(this MetadataReader reader);
 +   public static int GetHeapMetadataOffset(this MetadataReader reader, HeapIndex heapIndex);
 +   public static int GetHeapSize(this MetadataReader reader, HeapIndex heapIndex);
 +   public static BlobHandle GetNextHandle(this MetadataReader reader, BlobHandle handle);
@@ -1266,6 +1334,7 @@
 +   public static ConstantHandle ConstantHandle(int rowNumber);
 +   public static CustomAttributeHandle CustomAttributeHandle(int rowNumber);
 +   public static DeclarativeSecurityAttributeHandle DeclarativeSecurityAttributeHandle(int rowNumber);
++   public static EntityHandle EntityHandle(int token);
 +   public static EventDefinitionHandle EventDefinitionHandle(int rowNumber);
 +   public static ExportedTypeHandle ExportedTypeHandle(int rowNumber);
 +   public static FieldDefinitionHandle FieldDefinitionHandle(int rowNumber);
@@ -1273,13 +1342,13 @@
 +   public static GenericParameterHandle GenericParameterHandle(int rowNumber);
 +   public static int GetHeapOffset(Handle handle);
 +   public static int GetHeapOffset(this MetadataReader reader, Handle handle);
-+   public static int GetRowNumber(Handle handle);
-+   public static int GetRowNumber(this MetadataReader reader, Handle handle);
++   public static int GetRowNumber(EntityHandle handle);
++   public static int GetRowNumber(this MetadataReader reader, EntityHandle handle);
 +   public static int GetToken(Handle handle);
 +   public static int GetToken(this MetadataReader reader, Handle handle);
 +   public static GuidHandle GuidHandle(int offset);
 +   public static Handle Handle(int token);
-+   public static Handle Handle(TableIndex tableIndex, int rowNumber);
++   public static EntityHandle Handle(TableIndex tableIndex, int rowNumber);
 +   public static ManifestResourceHandle ManifestResourceHandle(int rowNumber);
 +   public static MemberReferenceHandle MemberReferenceHandle(int rowNumber);
 +   public static MethodDefinitionHandle MethodDefinitionHandle(int rowNumber);

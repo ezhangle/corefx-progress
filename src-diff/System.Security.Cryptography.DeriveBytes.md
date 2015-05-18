@@ -17,7 +17,6 @@
 -   public Rfc2898DeriveBytes(string password, int saltSize, int iterations);
 -   public int IterationCount { get; set; }
 -   public byte[] Salt { get; set; }
--   public byte[] CryptDeriveKey(string algname, string alghashname, int keySize, byte[] rgbIV);
 -   protected override void Dispose(bool disposing);
 -   public override byte[] GetBytes(int cb);
 -   public override void Reset();

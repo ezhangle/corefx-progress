@@ -840,6 +840,7 @@
 -   public static void Collect(int generation, GCCollectionMode mode);
 -   public static void Collect(int generation, GCCollectionMode mode, bool blocking);
 -   public static int CollectionCount(int generation);
+-   public static int GetGeneration(object obj);
 -   public static long GetTotalMemory(bool forceFullCollection);
 -   public static void KeepAlive(object obj);
 -   public static void RemoveMemoryPressure(long bytesAllocated);

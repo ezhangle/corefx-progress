@@ -43,12 +43,12 @@
     public static DirectoryInfo GetParent(string path);
     public static void Move(string sourceDirName, string destDirName);
     public static void SetCreationTime(string path, DateTime creationTime);
-    public static void SetCreationTimeUtc(string path, DateTime creationTimeUtccreationTime);
+    public static void SetCreationTimeUtc(string path, DateTime creationTimeUtc);
     public static void SetCurrentDirectory(string path);
     public static void SetLastAccessTime(string path, DateTime lastAccessTime);
-    public static void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtclastAccessTime);
+    public static void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc);
     public static void SetLastWriteTime(string path, DateTime lastWriteTime);
-    public static void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtclastWriteTime);
+    public static void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc);
   }
   public sealed class DirectoryInfo : FileSystemInfo {
     public DirectoryInfo(string path);
@@ -117,12 +117,12 @@
     public static IEnumerable<string> ReadLines(string path);
     public static IEnumerable<string> ReadLines(string path, Encoding encoding);
     public static void SetAttributes(string path, FileAttributes fileAttributes);
-    public static void SetCreationTime(string path, DateTime creationTime);
+    public static void SetCreationTime(string path, DateTime creationTimecreationTimeUtc);
     public static void SetCreationTimeUtc(string path, DateTime creationTimeUtccreationTime);
     public static void SetLastAccessTime(string path, DateTime lastAccessTime);
-    public static void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtclastAccessTime);
+    public static void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc);
     public static void SetLastWriteTime(string path, DateTime lastWriteTime);
-    public static void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtclastWriteTime);
+    public static void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc);
     public static void WriteAllBytes(string path, byte[] bytes);
     public static void WriteAllLines(string path, IEnumerable<string> contents);
     public static void WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding);

@@ -1,7 +1,7 @@
 ﻿```diff
 ---lib-full\System.IO.dll
 +++lib-oss\System.IO.dll
--namespace System.IO {
+ namespace System.IO {
 - public class BinaryReader : IDisposable {
 -   public BinaryReader(Stream input);
 -   public BinaryReader(Stream input, Encoding encoding);
@@ -69,10 +69,10 @@
 -   public EndOfStreamException(string message);
 -   public EndOfStreamException(string message, Exception innerException);
   }
-- public sealed class InvalidDataException : Exception {
--   public InvalidDataException();
--   public InvalidDataException(string message);
--   public InvalidDataException(string message, Exception innerException);
+  public sealed class InvalidDataException : Exception {
+    public InvalidDataException();
+    public InvalidDataException(string message);
+    public InvalidDataException(string message, Exception innerException);
   }
 - public class MemoryStream : Stream {
 -   public MemoryStream();

@@ -161,7 +161,7 @@
 -   protected virtual void Dispose(bool disposing);
   }
  }
--namespace System.Threading.Tasks {
+ namespace System.Threading.Tasks {
 - public class ConcurrentExclusiveSchedulerPair {
 -   public ConcurrentExclusiveSchedulerPair();
 -   public ConcurrentExclusiveSchedulerPair(TaskScheduler taskScheduler);
@@ -345,9 +345,9 @@
 -   PreferFairness = 1,
 -   RunContinuationsAsynchronously = 64,
   }
-- public static class TaskExtensions {
--   public static Task Unwrap(this Task<Task> task);
--   public static Task<TResult> Unwrap<TResult>(this Task<Task<TResult>> task);
+  public static class TaskExtensions {
+    public static Task Unwrap(this Task<Task> task);
+    public static Task<TResult> Unwrap<TResult>(this Task<Task<TResult>> task);
   }
 - public class TaskFactory {
 -   public TaskFactory();

@@ -153,6 +153,7 @@
     public override void WriteTo(XmlWriter writer);
   }
   public class XElement : XContainer, IXmlSerializable {
++   public XElement();
     public XElement(XElement other);
     public XElement(XName name);
     public XElement(XName name, object content);
