@@ -12,15 +12,15 @@
 -   public override string ToString();
   }
 - public static class StackFrameExtensions {
--   public static IntPtr GetNativeImageBase(this StackFrame sf);
--   public static IntPtr GetNativeIP(this StackFrame sf);
--   public static bool HasILOffset(this StackFrame sf);
--   public static bool HasMethod(this StackFrame sf);
--   public static bool HasNativeImage(this StackFrame sf);
--   public static bool HasSource(this StackFrame sf);
+-   public static IntPtr GetNativeImageBase(this StackFrame stackFrame);
+-   public static IntPtr GetNativeIP(this StackFrame stackFrame);
+-   public static bool HasILOffset(this StackFrame stackFrame);
+-   public static bool HasMethod(this StackFrame stackFrame);
+-   public static bool HasNativeImage(this StackFrame stackFrame);
+-   public static bool HasSource(this StackFrame stackFrame);
   }
 - public sealed class StackTrace {
--   public StackTrace(Exception e, bool fNeedFileInfo);
+-   public StackTrace(Exception exception, bool needFileInfo);
 -   public StackFrame[] GetFrames();
 -   public override string ToString();
   }

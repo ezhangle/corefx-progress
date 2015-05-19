@@ -3,67 +3,86 @@
     public CodePointFilter();
     public CodePointFilter(ICodePointFilter other);
     public CodePointFilter(params UnicodeRange[] allowedRanges);
-    public CodePointFilter AllowChar(char c);
-    public CodePointFilter AllowChars(params char[] chars);
-    public CodePointFilter AllowChars(string chars);
+    public CodePointFilter AllowCharacter(char character);
+    public CodePointFilter AllowCharacters(params char[] characters);
+    public CodePointFilter AllowCharacters(string characters);
     public CodePointFilter AllowFilter(ICodePointFilter filter);
     public CodePointFilter AllowRange(UnicodeRange range);
     public CodePointFilter AllowRanges(params UnicodeRange[] ranges);
     public CodePointFilter Clear();
-    public CodePointFilter ForbidChar(char c);
-    public CodePointFilter ForbidChars(params char[] chars);
-    public CodePointFilter ForbidChars(string chars);
+    public CodePointFilter ForbidCharacter(char character);
+    public CodePointFilter ForbidCharacters(params char[] characters);
+    public CodePointFilter ForbidCharacters(string characters);
     public CodePointFilter ForbidRange(UnicodeRange range);
     public CodePointFilter ForbidRanges(params UnicodeRange[] ranges);
     public IEnumerable<int> GetAllowedCodePoints();
-    public bool IsCharacterAllowed(char c);
+    public bool IsCharacterAllowed(char character);
   }
-  public static class EncoderExtensions {
-    public static void HtmlEncode(this IHtmlEncoder htmlEncoder, string value, TextWriter output);
-    public static void JavaScriptStringEncode(this IJavaScriptStringEncoder javaScriptStringEncoder, string value, TextWriter output);
-    public static void UrlEncode(this IUrlEncoder urlEncoder, string value, TextWriter output);
+  public sealed class DefaultHtmlEncoder : HtmlEncoder {
+    public DefaultHtmlEncoder(CodePointFilter filter);
+    public DefaultHtmlEncoder(params UnicodeRange[] allowedRanges);
+    public override int MaxOutputCharactersPerInputCharacter { get; }
+    [MethodImpl(AggressiveInlining)]public override bool Encodes(int unicodeScalar);
+    [MethodImpl(AggressiveInlining)]public unsafe override int FindFirstCharacterToEncode(char* text, int textLength);
+    public unsafe override bool TryEncodeUnicodeScalar(int unicodeScalar, char* buffer, int bufferLength, out int numberOfCharactersWritten);
   }
-  public sealed class HtmlEncoder : IHtmlEncoder {
-    public HtmlEncoder();
-    public HtmlEncoder(ICodePointFilter filter);
-    public HtmlEncoder(params UnicodeRange[] allowedRanges);
-    public static HtmlEncoder Default { get; set; }
-    public void HtmlEncode(char[] value, int startIndex, int charCount, TextWriter output);
-    public string HtmlEncode(string value);
-    public void HtmlEncode(string value, int startIndex, int charCount, TextWriter output);
+  public sealed class DefaultJavaScriptEncoder : JavaScriptEncoder {
+    public DefaultJavaScriptEncoder(CodePointFilter filter);
+    public DefaultJavaScriptEncoder(params UnicodeRange[] allowedRanges);
+    public override int MaxOutputCharactersPerInputCharacter { get; }
+    [MethodImpl(AggressiveInlining)]public override bool Encodes(int unicodeScalar);
+    [MethodImpl(AggressiveInlining)]public unsafe override int FindFirstCharacterToEncode(char* text, int textLength);
+    public unsafe override bool TryEncodeUnicodeScalar(int unicodeScalar, char* buffer, int bufferLength, out int numberOfCharactersWritten);
+  }
+  public sealed class DefaultUrlEncoder : UrlEncoder {
+    public DefaultUrlEncoder(CodePointFilter filter);
+    public DefaultUrlEncoder(params UnicodeRange[] allowedRanges);
+    public override int MaxOutputCharactersPerInputCharacter { get; }
+    [MethodImpl(AggressiveInlining)]public override bool Encodes(int unicodeScalar);
+    [MethodImpl(AggressiveInlining)]public unsafe override int FindFirstCharacterToEncode(char* text, int textLength);
+    public unsafe override bool TryEncodeUnicodeScalar(int unicodeScalar, char* buffer, int bufferLength, out int numberOfCharactersWritten);
+  }
+  public abstract class HtmlEncoder : TextEncoder {
+    protected HtmlEncoder();
+    public static HtmlEncoder Default { get; }
+    public static HtmlEncoder Create(CodePointFilter filter);
+    public static HtmlEncoder Create(params UnicodeRange[] allowedRanges);
   }
   public interface ICodePointFilter {
     IEnumerable<int> GetAllowedCodePoints();
   }
-  public interface IHtmlEncoder {
-    void HtmlEncode(char[] value, int startIndex, int charCount, TextWriter output);
-    string HtmlEncode(string value);
-    void HtmlEncode(string value, int startIndex, int charCount, TextWriter output);
+  public abstract class JavaScriptEncoder : TextEncoder {
+    protected JavaScriptEncoder();
+    public static JavaScriptEncoder Default { get; }
+    public static JavaScriptEncoder Create(CodePointFilter filter);
+    public static JavaScriptEncoder Create(params UnicodeRange[] allowedRanges);
   }
-  public interface IJavaScriptStringEncoder {
-    void JavaScriptStringEncode(char[] value, int startIndex, int charCount, TextWriter output);
-    string JavaScriptStringEncode(string value);
-    void JavaScriptStringEncode(string value, int startIndex, int charCount, TextWriter output);
+  public abstract class TextEncoder {
+    protected TextEncoder();
+    public abstract int MaxOutputCharactersPerInputCharacter { get; }
+    public abstract bool Encodes(int unicodeScalar);
+    public unsafe abstract int FindFirstCharacterToEncode(char* text, int textLength);
+    public unsafe abstract bool TryEncodeUnicodeScalar(int unicodeScalar, char* buffer, int bufferLength, out int numberOfCharactersWritten);
   }
-  public interface IUrlEncoder {
-    void UrlEncode(char[] value, int startIndex, int charCount, TextWriter output);
-    string UrlEncode(string value);
-    void UrlEncode(string value, int startIndex, int charCount, TextWriter output);
+  public static class TextEncoderExtensions {
+    public static void Encode(this TextEncoder encoder, TextWriter output, char[] value, int startIndex, int characterCount);
+    public static void Encode(this TextEncoder encoder, TextWriter output, string value);
+    public static void Encode(this TextEncoder encoder, TextWriter output, string value, int startIndex, int characterCount);
+    public static string Encode(this TextEncoder encoder, string value);
   }
-  public sealed class JavaScriptStringEncoder : IJavaScriptStringEncoder {
-    public JavaScriptStringEncoder();
-    public JavaScriptStringEncoder(ICodePointFilter filter);
-    public JavaScriptStringEncoder(params UnicodeRange[] allowedRanges);
-    public static JavaScriptStringEncoder Default { get; set; }
-    public void JavaScriptStringEncode(char[] value, int startIndex, int charCount, TextWriter output);
-    public string JavaScriptStringEncode(string value);
-    public void JavaScriptStringEncode(string value, int startIndex, int charCount, TextWriter output);
+  public abstract class UrlEncoder : TextEncoder {
+    protected UrlEncoder();
+    public static UrlEncoder Default { get; }
+    public static UrlEncoder Create(CodePointFilter filter);
+    public static UrlEncoder Create(params UnicodeRange[] allowedRanges);
   }
+}
+namespace System.Text.Unicode {
   public sealed class UnicodeRange {
-    public UnicodeRange(int firstCodePoint, int rangeSize);
+    public UnicodeRange(int firstCodePoint, int length);
     public int FirstCodePoint { get; }
-    public int RangeSize { get; }
-    public static UnicodeRange FromSpan(char firstChar, char lastChar);
+    public int Length { get; }
+    public static UnicodeRange Create(char firstCharacter, char lastCharacter);
   }
   public static class UnicodeRanges {
     public static UnicodeRange All { get; }
@@ -223,14 +242,5 @@
     public static UnicodeRange YijingHexagramSymbols { get; }
     public static UnicodeRange YiRadicals { get; }
     public static UnicodeRange YiSyllables { get; }
-  }
-  public sealed class UrlEncoder : IUrlEncoder {
-    public UrlEncoder();
-    public UrlEncoder(ICodePointFilter filter);
-    public UrlEncoder(params UnicodeRange[] allowedRanges);
-    public static UrlEncoder Default { get; set; }
-    public void UrlEncode(char[] value, int startIndex, int charCount, TextWriter output);
-    public string UrlEncode(string value);
-    public void UrlEncode(string value, int startIndex, int charCount, TextWriter output);
   }
 }

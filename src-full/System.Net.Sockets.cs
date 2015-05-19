@@ -147,7 +147,6 @@
     public bool DualMode { get; set; }
     public bool EnableBroadcast { get; set; }
     public bool ExclusiveAddressUse { get; set; }
-    public IntPtr Handle { get; }
     public bool IsBound { get; }
     public LingerOption LingerState { get; set; }
     public EndPoint LocalEndPoint { get; }
@@ -163,7 +162,6 @@
     public int SendTimeout { get; set; }
     public SocketType SocketType { get; }
     public short Ttl { get; set; }
-    public bool UseOnlyOverlappedIO { get; set; }
     public Socket Accept();
     public bool AcceptAsync(SocketAsyncEventArgs e);
     public IAsyncResult BeginAccept(AsyncCallback callback, object state);
@@ -184,8 +182,6 @@
     public IAsyncResult BeginSend(byte[] buffer, int offset, int size, SocketFlags socketFlags, out SocketError errorCode, AsyncCallback callback, object state);
     public IAsyncResult BeginSend(IList<ArraySegment<byte>> buffers, SocketFlags socketFlags, AsyncCallback callback, object state);
     public IAsyncResult BeginSend(IList<ArraySegment<byte>> buffers, SocketFlags socketFlags, out SocketError errorCode, AsyncCallback callback, object state);
-    public IAsyncResult BeginSendFile(string fileName, AsyncCallback callback, object state);
-    public IAsyncResult BeginSendFile(string fileName, byte[] preBuffer, byte[] postBuffer, TransmitFileOptions flags, AsyncCallback callback, object state);
     public IAsyncResult BeginSendTo(byte[] buffer, int offset, int size, SocketFlags socketFlags, EndPoint remoteEP, AsyncCallback callback, object state);
     public void Bind(EndPoint localEP);
     public static void CancelConnectAsync(SocketAsyncEventArgs e);
@@ -211,7 +207,6 @@
     public int EndReceiveMessageFrom(IAsyncResult asyncResult, ref SocketFlags socketFlags, ref EndPoint endPoint, out IPPacketInformation ipPacketInformation);
     public int EndSend(IAsyncResult asyncResult);
     public int EndSend(IAsyncResult asyncResult, out SocketError errorCode);
-    public void EndSendFile(IAsyncResult asyncResult);
     public int EndSendTo(IAsyncResult asyncResult);
     ~Socket();
     public object GetSocketOption(SocketOptionLevel optionLevel, SocketOptionName optionName);
@@ -247,8 +242,6 @@
     public int Send(IList<ArraySegment<byte>> buffers, SocketFlags socketFlags);
     public int Send(IList<ArraySegment<byte>> buffers, SocketFlags socketFlags, out SocketError errorCode);
     public bool SendAsync(SocketAsyncEventArgs e);
-    public void SendFile(string fileName);
-    public void SendFile(string fileName, byte[] preBuffer, byte[] postBuffer, TransmitFileOptions flags);
     public bool SendPacketsAsync(SocketAsyncEventArgs e);
     public int SendTo(byte[] buffer, int offset, int size, SocketFlags socketFlags, EndPoint remoteEP);
     public int SendTo(byte[] buffer, int size, SocketFlags socketFlags, EndPoint remoteEP);

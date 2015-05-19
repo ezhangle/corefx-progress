@@ -273,6 +273,7 @@
     protected string ReadNullableString();
     protected IXmlSerializable ReadSerializable(IXmlSerializable serializable);
     protected IXmlSerializable ReadSerializable(IXmlSerializable serializable, bool wrappedAny);
+    protected virtual string ReadString();
     protected string ReadString(string value);
     protected string ReadString(string value, bool trim);
     protected object ReadTypedNull(XmlQualifiedName type);
@@ -413,10 +414,10 @@
   public abstract class XmlSerializerImplementation {
     protected XmlSerializerImplementation();
     public virtual XmlSerializationReader Reader { get; }
+    public virtual Dictionary<string, string> ReadMethods { get; }
+    public virtual Dictionary<string, XmlSerializer> TypedSerializers { get; }
+    public virtual Dictionary<string, string> WriteMethods { get; }
     public virtual XmlSerializationWriter Writer { get; }
-    public virtual IDictionary XmlReadMethods { get; }
-    public virtual IDictionary XmlTypedSerializers { get; }
-    public virtual IDictionary XmlWriteMethods { get; }
     public virtual bool CanSerialize(Type type);
     public virtual XmlSerializer GetSerializer(Type type);
   }
