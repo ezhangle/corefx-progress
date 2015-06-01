@@ -44,19 +44,33 @@
 - public class WebException : InvalidOperationException {
 -   public WebException();
 -   public WebException(string message);
--   public WebException(string message, Exception innerException);
--   public WebException(string message, Exception innerException, WebExceptionStatus status, WebResponse response);
+-   public WebException(string message, Exception inner);
+-   public WebException(string message, Exception inner, WebExceptionStatus status, WebResponse response);
 -   public WebException(string message, WebExceptionStatus status);
 -   public WebResponse Response { get; }
 -   public WebExceptionStatus Status { get; }
   }
 - public enum WebExceptionStatus {
+-   CacheEntryNotFound = 18,
 -   ConnectFailure = 2,
+-   ConnectionClosed = 8,
+-   KeepAliveFailure = 12,
 -   MessageLengthLimitExceeded = 17,
+-   NameResolutionFailure = 1,
 -   Pending = 13,
+-   PipelineFailure = 5,
+-   ProtocolError = 7,
+-   ProxyNameResolutionFailure = 15,
+-   ReceiveFailure = 3,
 -   RequestCanceled = 6,
+-   RequestProhibitedByCachePolicy = 19,
+-   RequestProhibitedByProxy = 20,
+-   SecureChannelFailure = 10,
 -   SendFailure = 4,
+-   ServerProtocolViolation = 11,
 -   Success = 0,
+-   Timeout = 14,
+-   TrustFailure = 9,
 -   UnknownError = 16,
   }
 - public abstract class WebRequest {

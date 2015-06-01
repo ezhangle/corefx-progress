@@ -60,6 +60,7 @@ Assembly Name | Status
 [System.Net.WebHeaderCollection](System.Net.WebHeaderCollection.md) | Coming
 [System.Net.WebSockets.Client](System.Net.WebSockets.Client.md) | Coming
 [System.Net.WebSockets](System.Net.WebSockets.md) | Coming
+[System.Numerics.Vectors](System.Numerics.Vectors.md) | Done
 [System.ObjectModel](System.ObjectModel.md) | Done
 [System.Reflection](System.Reflection.md) | Coming
 [System.Reflection.DispatchProxy](System.Reflection.DispatchProxy.md) | Done
@@ -85,11 +86,11 @@ Assembly Name | Status
 [System.Security.AccessControl](System.Security.AccessControl.md) | Coming
 [System.Security.Claims](System.Security.Claims.md) | Coming
 [System.Security.Cryptography.DeriveBytes](System.Security.Cryptography.DeriveBytes.md) | Coming
-[System.Security.Cryptography.Encoding](System.Security.Cryptography.Encoding.md) | Coming
+[System.Security.Cryptography.Encoding](System.Security.Cryptography.Encoding.md) | Done
 [System.Security.Cryptography.Encryption.Aes](System.Security.Cryptography.Encryption.Aes.md) | Coming
 [System.Security.Cryptography.Encryption](System.Security.Cryptography.Encryption.md) | Done
 [System.Security.Cryptography.Hashing.Algorithms](System.Security.Cryptography.Hashing.Algorithms.md) | Done
-[System.Security.Cryptography.Hashing](System.Security.Cryptography.Hashing.md) | Coming
+[System.Security.Cryptography.Hashing](System.Security.Cryptography.Hashing.md) | Done
 [System.Security.Cryptography.RandomNumberGenerator](System.Security.Cryptography.RandomNumberGenerator.md) | Coming
 [System.Security.Cryptography.RSA](System.Security.Cryptography.RSA.md) | Coming
 [System.Security.Cryptography.X509Certificates](System.Security.Cryptography.X509Certificates.md) | Coming

@@ -414,9 +414,9 @@
   public abstract class XmlSerializerImplementation {
     protected XmlSerializerImplementation();
     public virtual XmlSerializationReader Reader { get; }
-    public virtual Dictionary<string, string> ReadMethods { get; }
-    public virtual Dictionary<string, XmlSerializer> TypedSerializers { get; }
-    public virtual Dictionary<string, string> WriteMethods { get; }
+    public virtual IDictionary ReadMethods { get; }
+    public virtual IDictionary TypedSerializers { get; }
+    public virtual IDictionary WriteMethods { get; }
     public virtual XmlSerializationWriter Writer { get; }
     public virtual bool CanSerialize(Type type);
     public virtual XmlSerializer GetSerializer(Type type);
