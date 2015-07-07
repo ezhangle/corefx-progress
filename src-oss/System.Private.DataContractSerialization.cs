@@ -54,6 +54,38 @@
     AsNeeded = 0,
     Never = 2,
   }
+  public static class JsonFormatGeneratorStatics {
+    public static PropertyInfo CollectionItemNameProperty { get; }
+    public static MethodInfo GetCurrentMethod { get; }
+    public static MethodInfo GetItemContractMethod { get; }
+    public static MethodInfo GetJsonDataContractMethod { get; }
+    public static MethodInfo GetJsonMemberIndexMethod { get; }
+    public static MethodInfo GetJsonMemberNameMethod { get; }
+    public static MethodInfo GetRevisedItemContractMethod { get; }
+    public static MethodInfo GetUninitializedObjectMethod { get; }
+    public static MethodInfo IsStartElementMethod0 { get; }
+    public static MethodInfo IsStartElementMethod2 { get; }
+    public static PropertyInfo LocalNameProperty { get; }
+    public static MethodInfo MoveNextMethod { get; }
+    public static MethodInfo MoveToContentMethod { get; }
+    public static PropertyInfo NamespaceProperty { get; }
+    public static PropertyInfo NodeTypeProperty { get; }
+    public static MethodInfo ParseEnumMethod { get; }
+    public static MethodInfo ReadJsonValueMethod { get; }
+    public static ConstructorInfo SerializationExceptionCtor { get; }
+    public static MethodInfo ThrowDuplicateMemberExceptionMethod { get; }
+    public static MethodInfo ThrowMissingRequiredMembersMethod { get; }
+    public static PropertyInfo TypeHandleProperty { get; }
+    public static PropertyInfo UseSimpleDictionaryFormatReadProperty { get; }
+    public static PropertyInfo UseSimpleDictionaryFormatWriteProperty { get; }
+    public static MethodInfo WriteAttributeStringMethod { get; }
+    public static MethodInfo WriteEndElementMethod { get; }
+    public static MethodInfo WriteJsonISerializableMethod { get; }
+    public static MethodInfo WriteJsonNameWithMappingMethod { get; }
+    public static MethodInfo WriteJsonValueMethod { get; }
+    public static MethodInfo WriteStartElementMethod { get; }
+    public static MethodInfo WriteStartElementStringMethod { get; }
+  }
   public abstract class XmlObjectSerializer {
     protected XmlObjectSerializer();
     public abstract bool IsStartObject(XmlDictionaryReader reader);
@@ -101,6 +133,10 @@ namespace System.Runtime.Serialization.Json {
   }
 }
 namespace System.Xml {
+  public interface IStreamProvider {
+    Stream GetStream();
+    void ReleaseStream(Stream stream);
+  }
   public interface IXmlDictionary {
     bool TryLookup(int key, out XmlDictionaryString result);
     bool TryLookup(string value, out XmlDictionaryString result);
