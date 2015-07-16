@@ -2,11 +2,6 @@
 ---lib-full\System.Net.Http.WinHttpHandler.dll
 +++lib-oss\System.Net.Http.WinHttpHandler.dll
  namespace System.Net.Http {
-  public enum AutomaticRedirectionPolicy {
-    Always = 2,
-    DisallowHttpsToHttp = 1,
-    Never = 0,
-  }
   public enum CookieUsePolicy {
     IgnoreCookies = 0,
     UseInternalCookieStoreOnly = 1,
@@ -21,7 +16,7 @@
   public class WinHttpHandler : HttpMessageHandler {
     public WinHttpHandler();
     public DecompressionMethods AutomaticDecompression { get; set; }
-    public AutomaticRedirectionPolicy AutomaticRedirectionPolicy { get; set; }
+    public bool AutomaticRedirection { get; set; }
     public bool CheckCertificateRevocationList { get; set; }
     public ClientCertificateOption ClientCertificateOption { get; set; }
     public X509Certificate2Collection ClientCertificates { get; }

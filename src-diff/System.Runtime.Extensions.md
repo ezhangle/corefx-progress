@@ -457,29 +457,29 @@
     public void Stop();
   }
  }
--namespace System.IO {
-- public static class Path {
--   public static readonly char AltDirectorySeparatorChar;
--   public static readonly char DirectorySeparatorChar;
--   public static readonly char PathSeparator;
--   public static readonly char VolumeSeparatorChar;
--   public static string ChangeExtension(string path, string extension);
--   public static string Combine(string path1, string path2);
--   public static string Combine(string path1, string path2, string path3);
--   public static string Combine(params string[] paths);
--   public static string GetDirectoryName(string path);
--   public static string GetExtension(string path);
--   public static string GetFileName(string path);
--   public static string GetFileNameWithoutExtension(string path);
--   public static string GetFullPath(string path);
--   public static char[] GetInvalidFileNameChars();
--   public static char[] GetInvalidPathChars();
--   public static string GetPathRoot(string path);
--   public static string GetRandomFileName();
--   public static string GetTempFileName();
--   public static string GetTempPath();
--   public static bool HasExtension(string path);
--   public static bool IsPathRooted(string path);
+ namespace System.IO {
+  public static class Path {
+    public static readonly char AltDirectorySeparatorChar;
+    public static readonly char DirectorySeparatorChar;
+    public static readonly char PathSeparator;
+    public static readonly char VolumeSeparatorChar;
+    public static string ChangeExtension(string path, string extension);
+    public static string Combine(string path1, string path2);
+    public static string Combine(string path1, string path2, string path3);
+    public static string Combine(params string[] paths);
+    public static string GetDirectoryName(string path);
+    public static string GetExtension(string path);
+    public static string GetFileName(string path);
+    public static string GetFileNameWithoutExtension(string path);
+    public static string GetFullPath(string path);
+    public static char[] GetInvalidFileNameChars();
+    public static char[] GetInvalidPathChars();
+    public static string GetPathRoot(string path);
+    public static string GetRandomFileName();
+    public static string GetTempFileName();
+    public static string GetTempPath();
+    public static bool HasExtension(string path);
+    public static bool IsPathRooted(string path);
   }
  }
  namespace System.Net {

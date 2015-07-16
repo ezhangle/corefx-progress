@@ -16,7 +16,6 @@ namespace System.Diagnostics {
     public bool EnableRaisingEvents { get; set; }
     public int ExitCode { get; }
     public DateTime ExitTime { get; }
-    public int HandleCount { get; }
     public bool HasExited { get; }
     public int Id { get; }
     public string MachineName { get; }

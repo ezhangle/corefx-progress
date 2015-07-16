@@ -28,14 +28,11 @@
     public override long Position { get; set; }
     protected override void Dispose(bool disposing);
     public override void Flush();
-    public override Task FlushAsync(CancellationToken cancellationToken);
     public void FlushFinalBlock();
     public override int Read(byte[] buffer, int offset, int count);
-    public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken);
     public override long Seek(long offset, SeekOrigin origin);
     public override void SetLength(long value);
     public override void Write(byte[] buffer, int offset, int count);
-    public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken);
   }
   public enum CryptoStreamMode {
     Read = 0,

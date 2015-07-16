@@ -57,7 +57,7 @@ Assembly Name | Status
 [System.Net.Security](System.Net.Security.md) | Coming
 [System.Net.Sockets](System.Net.Sockets.md) | Coming
 [System.Net.Utilities](System.Net.Utilities.md) | Coming
-[System.Net.WebHeaderCollection](System.Net.WebHeaderCollection.md) | Coming
+[System.Net.WebHeaderCollection](System.Net.WebHeaderCollection.md) | Done
 [System.Net.WebSockets.Client](System.Net.WebSockets.Client.md) | Coming
 [System.Net.WebSockets](System.Net.WebSockets.md) | Coming
 [System.Numerics.Vectors](System.Numerics.Vectors.md) | Done
