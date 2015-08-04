@@ -408,7 +408,7 @@ namespace System.Linq.Expressions {
     public Expression(Expression body, string name, bool tailCall, ReadOnlyCollection<ParameterExpression> parameters);
     protected internal override Expression Accept(ExpressionVisitor visitor);
     public new TDelegate Compile();
-    public override LambdaExpression Update(Expression body, IEnumerable<ParameterExpression> parameters);
+    public Expression<TDelegate> Update(Expression body, IEnumerable<ParameterExpression> parameters);
   }
   public enum ExpressionType {
     Add = 0,
@@ -518,7 +518,6 @@ namespace System.Linq.Expressions {
     protected internal virtual Expression VisitInvocation(InvocationExpression node);
     protected internal virtual Expression VisitLabel(LabelExpression node);
     protected virtual LabelTarget VisitLabelTarget(LabelTarget node);
-    protected internal virtual Expression VisitLambda(LambdaExpression node);
     protected internal virtual Expression VisitLambda<T>(Expression<T> node);
     protected internal virtual Expression VisitListInit(ListInitExpression node);
     protected internal virtual Expression VisitLoop(LoopExpression node);
@@ -605,9 +604,7 @@ namespace System.Linq.Expressions {
     public Type ReturnType { get; }
     public bool TailCall { get; }
     public sealed override Type Type { get; }
-    protected internal override Expression Accept(ExpressionVisitor visitor);
     public Delegate Compile();
-    public virtual LambdaExpression Update(Expression body, IEnumerable<ParameterExpression> parameters);
   }
   public sealed class ListInitExpression : Expression {
     public override bool CanReduce { get; }

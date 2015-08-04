@@ -85,6 +85,7 @@
     public override void Clear();
     public override string Get(int index);
     public override string Get(string name);
+    public override IEnumerator GetEnumerator();
     public override string GetKey(int index);
     public override string[] GetValues(int index);
     public override string[] GetValues(string header);
