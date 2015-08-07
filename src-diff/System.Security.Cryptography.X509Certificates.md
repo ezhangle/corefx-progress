@@ -21,8 +21,11 @@
     public PublicKey(Oid oid, AsnEncodedData parameters, AsnEncodedData keyValue);
     public AsnEncodedData EncodedKeyValue { get; }
     public AsnEncodedData EncodedParameters { get; }
-    public AsymmetricAlgorithm Key { get; }
     public Oid Oid { get; }
+  }
+  public static class RSACertificateExtensions {
+    public static RSA GetRSAPrivateKey(this X509Certificate2 certificate);
+    public static RSA GetRSAPublicKey(this X509Certificate2 certificate);
   }
   public enum StoreLocation {
     CurrentUser = 1,
@@ -114,7 +117,6 @@
     public X500DistinguishedName IssuerName { get; }
     public DateTime NotAfter { get; }
     public DateTime NotBefore { get; }
-    public AsymmetricAlgorithm PrivateKey { get; set; }
     public PublicKey PublicKey { get; }
     public byte[] RawData { get; }
     public string SerialNumber { get; }
