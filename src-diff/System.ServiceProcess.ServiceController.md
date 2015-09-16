@@ -15,6 +15,7 @@
     public string ServiceName { get; }
     public ServiceController[] ServicesDependedOn { get; }
     public ServiceType ServiceType { get; }
+    public ServiceStartMode StartType { get; }
     public ServiceControllerStatus Status { get; }
     public void Continue();
     public void Dispose();
@@ -42,8 +43,10 @@
   }
   public enum ServiceStartMode {
     Automatic = 2,
+    Boot = 0,
     Disabled = 4,
     Manual = 3,
+    System = 1,
   }
   public enum ServiceType {
     Adapter = 4,

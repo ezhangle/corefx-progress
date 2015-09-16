@@ -75,8 +75,6 @@
     public static Process Start(ProcessStartInfo startInfo);
     public static Process Start(string fileName);
     public static Process Start(string fileName, string arguments);
-    public static Process Start(string fileName, string userName, SecureString password, string domain);
-    public static Process Start(string fileName, string arguments, string userName, SecureString password, string domain);
 +   public override string ToString();
     public void WaitForExit();
     public bool WaitForExit(int milliseconds);
@@ -121,7 +119,7 @@
     public IDictionary<string, string> Environment { get; }
     public string FileName { get; set; }
     public bool LoadUserProfile { get; set; }
-    public SecureString Password { get; set; }
+    public string PasswordInClearText { get; set; }
     public bool RedirectStandardError { get; set; }
     public bool RedirectStandardInput { get; set; }
     public bool RedirectStandardOutput { get; set; }

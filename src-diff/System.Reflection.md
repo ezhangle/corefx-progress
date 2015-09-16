@@ -263,6 +263,7 @@
 -   public bool IsAutoLayout { get; }
 -   public bool IsByRef { get; }
 -   public bool IsClass { get; }
+-   public virtual bool IsCOMObject { get; }
 -   public abstract bool IsEnum { get; }
 -   public bool IsExplicitLayout { get; }
 -   public abstract bool IsGenericParameter { get; }
