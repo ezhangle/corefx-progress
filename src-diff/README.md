@@ -50,7 +50,7 @@ Assembly Name | Status
 [System.Linq.Queryable](System.Linq.Queryable.md) | Done
 [System.Net.Http](System.Net.Http.md) | Done
 [System.Net.Http.WinHttpHandler](System.Net.Http.WinHttpHandler.md) | Done
-[System.Net.NameResolution](System.Net.NameResolution.md) | Coming
+[System.Net.NameResolution](System.Net.NameResolution.md) | Done
 [System.Net.NetworkInformation](System.Net.NetworkInformation.md) | Coming
 [System.Net.Primitives](System.Net.Primitives.md) | Done
 [System.Net.Requests](System.Net.Requests.md) | Done

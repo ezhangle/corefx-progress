@@ -213,8 +213,8 @@ namespace System.Security.Cryptography.X509Certificates {
   }
   public sealed class X509ChainElementCollection : ICollection, IEnumerable {
     public int Count { get; }
-    public bool IsSynchronized { get; }
-    public object SyncRoot { get; }
+    bool System.Collections.ICollection.IsSynchronized { get; }
+    object System.Collections.ICollection.SyncRoot { get; }
     public X509ChainElement this[int index] { get; }
     public void CopyTo(X509ChainElement[] array, int index);
     public X509ChainElementEnumerator GetEnumerator();
@@ -297,8 +297,8 @@ namespace System.Security.Cryptography.X509Certificates {
   public sealed class X509ExtensionCollection : ICollection, IEnumerable {
     public X509ExtensionCollection();
     public int Count { get; }
-    public bool IsSynchronized { get; }
-    public object SyncRoot { get; }
+    bool System.Collections.ICollection.IsSynchronized { get; }
+    object System.Collections.ICollection.SyncRoot { get; }
     public X509Extension this[int index] { get; }
     public X509Extension this[string oid] { get; }
     public int Add(X509Extension extension);

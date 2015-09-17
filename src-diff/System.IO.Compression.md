@@ -26,11 +26,11 @@
     public override void Flush();
 +   public override Task FlushAsync(CancellationToken cancellationToken);
     public override int Read(byte[] array, int offset, int count);
-+   public override Task<int> ReadAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
+    public override Task<int> ReadAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
     public override long Seek(long offset, SeekOrigin origin);
     public override void SetLength(long value);
     public override void Write(byte[] array, int offset, int count);
-+   public override Task WriteAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
+    public override Task WriteAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
   }
   public class GZipStream : Stream {
     public GZipStream(Stream stream, CompressionLevel compressionLevel);
@@ -47,11 +47,11 @@
     public override void Flush();
 +   public override Task FlushAsync(CancellationToken cancellationToken);
     public override int Read(byte[] array, int offset, int count);
-+   public override Task<int> ReadAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
+    public override Task<int> ReadAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
     public override long Seek(long offset, SeekOrigin origin);
     public override void SetLength(long value);
     public override void Write(byte[] array, int offset, int count);
-+   public override Task WriteAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
+    public override Task WriteAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
   }
   public class ZipArchive : IDisposable {
     public ZipArchive(Stream stream);

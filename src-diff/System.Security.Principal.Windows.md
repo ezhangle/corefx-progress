@@ -173,6 +173,7 @@
     public WindowsIdentity(IntPtr userToken);
     public WindowsIdentity(IntPtr userToken, string type);
 +   protected WindowsIdentity(WindowsIdentity identity);
+    public WindowsIdentity(string sUserPrincipalName);
     public SafeAccessTokenHandle AccessToken { get; }
 +   public sealed override string AuthenticationType { get; }
 +   public override IEnumerable<Claim> Claims { get; }

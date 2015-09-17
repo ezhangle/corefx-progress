@@ -168,6 +168,7 @@ namespace System.Security.Principal {
   public class WindowsIdentity : ClaimsIdentity, IDisposable {
     public WindowsIdentity(IntPtr userToken);
     public WindowsIdentity(IntPtr userToken, string type);
+    public WindowsIdentity(string sUserPrincipalName);
     public SafeAccessTokenHandle AccessToken { get; }
     public IdentityReferenceCollection Groups { get; }
     public TokenImpersonationLevel ImpersonationLevel { get; }

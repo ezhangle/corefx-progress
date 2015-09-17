@@ -31,6 +31,7 @@
     public void CancelAsync();
     public void Dispose();
     protected virtual void Dispose(bool disposing);
+    ~BackgroundWorker();
     protected virtual void OnDoWork(DoWorkEventArgs e);
     protected virtual void OnProgressChanged(ProgressChangedEventArgs e);
     protected virtual void OnRunWorkerCompleted(RunWorkerCompletedEventArgs e);
